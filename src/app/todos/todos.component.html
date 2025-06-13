@@ -1,3 +1,14 @@
-@for (todo of todoItems(); track todo.id) {
-    <p>{{ todo.title }}</p>
+<form>
+    <label>Filter Todos</label>
+
+    <input
+        name="searchTerm"
+        [(ngModel)]="searchTerm" 
+        placeholder="Search todos ..." 
+    />
+</form>
+
+
+@for (todo of todoItems() | filterTodos : searchTerm(); track todo.id) {
+    <app-todo-item [todo]="todo" />
 }
